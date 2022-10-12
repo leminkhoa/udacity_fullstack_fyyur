@@ -1,22 +1,13 @@
 from datetime import datetime
 from flask_wtf import Form
 from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField, BooleanField
-from wtforms.validators import DataRequired, Regexp, URL, Length, ValidationError
+from wtforms.validators import DataRequired, Regexp, URL, Length, Optional
 from src.models.enums import GenresEnum, StateEnum
-# from src.utils.validators import my_length_check
+from src.validators import facebook_link_validator, start_time_validator
 
 genres_choices = GenresEnum.__members__.keys()
 state_choices = StateEnum.__members__.keys()
 
-def length(min=-1, max=-1):
-    message = 'Must be between %d and %d characters long.' % (min, max)
-
-    def _length(form, field):
-        l = field.data and len(field.data) or 0
-        if l < min or max != -1 and l > max:
-            raise ValidationError(message)
-
-    return _length
 
 class ShowForm(Form):
     artist_id = StringField(
@@ -27,8 +18,9 @@ class ShowForm(Form):
     )
     start_time = DateTimeField(
         'start_time',
-        validators=[DataRequired()],
-        default= datetime.today()
+        validators=[DataRequired(), start_time_validator],
+        format="%Y-%m-%d %H:%M:%S",
+        default= datetime.today(),
     )
 
 class VenueForm(Form):
@@ -52,7 +44,8 @@ class VenueForm(Form):
     phone = StringField(
         'phone',
         validators=[Regexp(r'\d{3}-\d{3}-\d{4}',
-                    message='Please enter a proper phone number')]
+                        message='Please enter a proper phone number'),
+                    Length(max=12)]
     )
     image_link = StringField(
         'image_link',
@@ -65,17 +58,19 @@ class VenueForm(Form):
     )
     facebook_link = StringField(
         'facebook_link',
-        validators=[URL(), Length(max=120)]
+        validators=[Optional(), URL(), facebook_link_validator] 
     )
     website_link = StringField(
         'website_link',
-        validators=[URL(), Length(max=120)]
+        validators=[Optional(), URL(), Length(max=120)]
     )
     seeking_talent = BooleanField(
-        'seeking_talent'
+        'seeking_talent',
+        validators=[Optional()]
     )
     seeking_description = StringField(
-        'seeking_description'
+        'seeking_description',
+        validators=[Optional(), Length(max=120)]
     )
 
 
@@ -96,7 +91,8 @@ class ArtistForm(Form):
     phone = StringField(
         'phone',
         validators=[Regexp(r'\d{3}-\d{3}-\d{4}',
-                    message='Please enter a proper phone number')]
+                        message='Please enter a proper phone number'),
+                    Length(max=12)]
     )
     image_link = StringField(
         'image_link',
@@ -109,7 +105,7 @@ class ArtistForm(Form):
     )
     facebook_link = StringField(
         'facebook_link',
-        validators=[URL(), Length(max=120)]
+        validators=[URL(), facebook_link_validator] 
     )
     website_link = StringField(
         'website_link',
