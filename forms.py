@@ -105,15 +105,17 @@ class ArtistForm(Form):
     )
     facebook_link = StringField(
         'facebook_link',
-        validators=[URL(), facebook_link_validator] 
+        validators=[Optional(), URL(), facebook_link_validator] 
     )
     website_link = StringField(
         'website_link',
-        validators=[URL(), Length(max=120)]
+        validators=[Optional(), URL(), Length(max=120)]
     )
     seeking_venue = BooleanField(
-        'seeking_venue'
+        'seeking_venue',
+        validators=[Optional()]
     )
     seeking_description = StringField(
-        'seeking_description'
+        'seeking_description',
+        validators=[Optional(), Length(max=120)]
     )

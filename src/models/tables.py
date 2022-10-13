@@ -4,6 +4,7 @@ from sqlalchemy import TypeDecorator, cast
 from sqlalchemy.dialects.postgresql import ARRAY
 import re
 
+
 class ArrayOfEnum(TypeDecorator):
     impl = ARRAY
     cache_ok = True
@@ -91,9 +92,9 @@ class Show(db.Model):
     __tablename__ = 'show'
 
     id = db.Column(db.String(120), primary_key=True)
-    venue_id = db.Column(db.String(120), db.ForeignKey('venue.id'))
-    artist_id = db.Column(db.String(120), db.ForeignKey('artist.id'))
-    start_time = db.Column(db.Time())
+    venue_id = db.Column(db.String(120), db.ForeignKey('venue.id'), nullable=True)
+    artist_id = db.Column(db.String(120), db.ForeignKey('artist.id'), nullable=True)
+    start_time = db.Column(db.DateTime())
 
 
 db.create_all()

@@ -9,7 +9,9 @@ def facebook_link_validator(form, field):
     if not re.match(pattern, field.data):
         raise ValidationError('Please enter a valid Facebook link')
 
+
 def start_time_validator(form, field):
     start_time = field.data
     if start_time < datetime.today() - relativedelta(years=2):
         raise ValidationError('Start time is too far from current time.')
+
