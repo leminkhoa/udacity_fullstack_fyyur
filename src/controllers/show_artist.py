@@ -96,7 +96,7 @@ def show_artist(artist_id):
       phone = artist_info[5],
       website = artist_info[6],
       facebook_link = artist_info[7],
-      seeking_talent = artist_info[8],
+      seeking_venue = artist_info[8],
       seeking_description = artist_info[9],
       image_link = artist_info[10],
       upcoming_shows = upcoming_shows,

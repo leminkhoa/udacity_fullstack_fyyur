@@ -20,19 +20,9 @@ from src.controllers.show_show import *
 from src.controllers.delete_venue import *
 from src.controllers.update_artist import *
 from src.controllers.update_venue import *
-# from src.error_handler import server_error, not_found_error
+from src.error_handler import server_error, not_found_error
 
 collections.Callable = collections.abc.Callable
-
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('errors/404.html'), 404
-
-
-@app.errorhandler(500)
-def server_error(error):
-    return render_template('errors/500.html'), 500
-
 
 if not app.debug:
     file_handler = FileHandler('error.log')
