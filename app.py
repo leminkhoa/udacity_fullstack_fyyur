@@ -4,16 +4,11 @@
 import os
 import collections
 import collections.abc
-import json
 import logging
-from flask import render_template, request, Response, flash, redirect, url_for, jsonify
 from logging import Formatter, FileHandler
 from flask_wtf import Form
 from forms import *
 from src.models.tables import *
-from src.utils import generate_uuid, format_datetime
-from sqlalchemy.exc import IntegrityError
-from datetime import datetime
 from app_config import app, moment, csrf, db, migrate
 from src.controllers.index import *
 from src.controllers.create_artist import *
@@ -25,8 +20,9 @@ from src.controllers.show_show import *
 from src.controllers.delete_venue import *
 from src.controllers.update_artist import *
 from src.controllers.update_venue import *
-collections.Callable = collections.abc.Callable
+# from src.error_handler import server_error, not_found_error
 
+collections.Callable = collections.abc.Callable
 
 @app.errorhandler(404)
 def not_found_error(error):

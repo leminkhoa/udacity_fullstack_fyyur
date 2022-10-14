@@ -20,6 +20,7 @@ GenresEnum = enum.Enum("genres", [
         ('Reggae', 'Reggae'),
         ('Rock n Roll', 'Rock n Roll'),
         ('Soul', 'Soul'),
+        ('Swing', 'Swing'),
         ('Other', 'Other'),
     ])
 

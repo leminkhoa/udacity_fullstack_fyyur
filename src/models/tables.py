@@ -6,6 +6,7 @@ import re
 
 
 class ArrayOfEnum(TypeDecorator):
+    '''Class Array of Enum'''
     impl = ARRAY
     cache_ok = True
 
@@ -87,6 +88,7 @@ class Artist(db.Model):
     seeking_venue = db.Column(db.Boolean, default=False)
     seeking_description = db.Column(db.String(120), nullable=True)
     shows = db.relationship('Show', backref='artist', lazy=True)
+
 
 class Show(db.Model):
     __tablename__ = 'show'
