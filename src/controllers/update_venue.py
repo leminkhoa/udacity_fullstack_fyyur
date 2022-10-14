@@ -1,5 +1,5 @@
 from app_config import app, db
-from flask import render_template, request, Response, flash, redirect, url_for, jsonify
+from flask import render_template, request, flash, redirect, url_for
 from src.models.tables import Venue
 from forms import *
 

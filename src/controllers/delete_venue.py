@@ -1,6 +1,6 @@
 import sys
 from app_config import app, db
-from flask import flash, redirect, url_for, render_template
+from flask import flash, redirect, url_for
 from src.models.tables import Venue
 from forms import *
 

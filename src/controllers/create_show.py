@@ -1,6 +1,6 @@
 import sys
 from app_config import app, db
-from flask import flash, request, redirect, url_for, render_template
+from flask import flash, request, render_template
 from src.models.tables import Show
 from forms import *
 from src.utils import generate_uuid

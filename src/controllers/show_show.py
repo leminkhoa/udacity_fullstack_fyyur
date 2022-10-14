@@ -1,11 +1,8 @@
 import sys
 from app_config import app, db
-from flask import request, render_template, abort
+from flask import render_template, abort
 from src.models.tables import Show
-from datetime import datetime
 from forms import *
-from src.utils import generate_uuid, format_datetime
-from sqlalchemy.exc import IntegrityError
 
 
 @app.route('/shows')
